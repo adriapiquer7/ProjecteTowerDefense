@@ -21,16 +21,19 @@ public class TileMapManager : MonoBehaviour
     void Update()
     {
         GetTileAtCurrentPointerPosition(out Vector3 worldPosition, out Vector3Int cellPosition);
+        if(cellPosition.y>=-4 && cellPosition.y <= 0)
+        {
+            worldPosition.z = 0;
+            _editGameObject.transform.position = worldPosition;
+        }
         Debug.Log($"{worldPosition} - {cellPosition}");
-        worldPosition.z = 0;
-        _editGameObject.transform.position = worldPosition;
     }
 
     private void GetTileAtCurrentPointerPosition(out Vector3 worldPosition, out Vector3Int cellPosition)
-        {
-            Vector2 mouseViewportCoordinates = _inputactions.UI.Point.ReadValue<Vector2>();
-            Vector3 worldPoint = Camera.main.ScreenToWorldPoint(mouseViewportCoordinates);
-            cellPosition = _tilemap.WorldToCell(worldPoint);
-            worldPosition = _tilemap.GetCellCenterWorld(cellPosition);
-        }
+    {
+        Vector2 mouseViewportCoordinates = _inputactions.UI.Point.ReadValue<Vector2>();
+        Vector3 worldPoint = Camera.main.ScreenToWorldPoint(mouseViewportCoordinates);
+        cellPosition = _tilemap.WorldToCell(worldPoint);
+        worldPosition = _tilemap.GetCellCenterWorld(cellPosition);
+    }
 }
