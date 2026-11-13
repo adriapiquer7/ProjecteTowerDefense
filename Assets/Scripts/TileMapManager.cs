@@ -26,7 +26,7 @@ public class TileMapManager : MonoBehaviour
             worldPosition.z = 0;
             _editGameObject.transform.position = worldPosition;
         }
-        Debug.Log($"{worldPosition} - {cellPosition}");
+        //Debug.Log($"{worldPosition} - {cellPosition}");
     }
 
     private void GetTileAtCurrentPointerPosition(out Vector3 worldPosition, out Vector3Int cellPosition)

@@ -12,7 +12,4 @@ public class SOPlantaBase : ScriptableObject
     [SerializeField] 
     private float _dany;
     public float Dany => _dany;
-    [SerializeField]
-    private SpriteRenderer _sprite;
-    public SpriteRenderer Sprite=>_sprite; 
 }

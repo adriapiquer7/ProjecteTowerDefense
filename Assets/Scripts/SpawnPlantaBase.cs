@@ -8,7 +8,7 @@ public class SpawnPlantaBase : MonoBehaviour
     private Tilemap _tilemap;
     
     [Header("Input")]
-    [SerializeField] private InputActionReference _inputCrearRef;
+    //[SerializeField] private InputActionReference _inputCrearRef;
     private InputSystem_Actions _inputactions;
     [Header("Funcionalitat")]
     [SerializeField] private GameObject _prefabPlanta;
@@ -16,33 +16,37 @@ public class SpawnPlantaBase : MonoBehaviour
 
     private void Awake()
     {
-        _inputCrearRef.action.performed += OnCrearPlanta;
         _inputactions = new InputSystem_Actions();
-        _inputactions.UI.Enable();
     }
 
-    private void OnDestroy()
+    void OnEnable()
     {
-        _inputCrearRef.action.performed -= OnCrearPlanta;
+        _inputactions.UI.Enable();
+        _inputactions.UI.RightClick.performed += OnCrearPlanta;
     }
-     void Update()
+
+    void OnDisable()
     {
-        GetTileAtCurrentPointerPosition(out Vector3 worldPosition, out Vector3Int cellPosition);
+        _inputactions.UI.RightClick.performed -= OnCrearPlanta;
+        _inputactions.UI.Disable();
     }
 
     private void OnCrearPlanta(InputAction.CallbackContext context)
     {
         GetTileAtCurrentPointerPosition(out Vector3 worldPosition, out Vector3Int cellPosition);
-        Vector3 posicioSpawn = cellPosition;
-        posicioSpawn.z = 0;
-
-        GameObject planta = Instantiate(_prefabPlanta);
-        planta.GetComponent<PlantaBaseBehaviour>().Iniciar(posicioSpawn, _plantas[Random.Range(0, _plantas.Length)]);
+        Vector3 posicioSpawn = worldPosition;
+        posicioSpawn.z = -1;
+        if(cellPosition.y>=-4 && cellPosition.y <= 0)
+        {
+            GameObject planta = Instantiate(_prefabPlanta);
+            planta.GetComponent<PlantaBaseBehaviour>().Iniciar(posicioSpawn, _plantas[Random.Range(0, _plantas.Length)]);
+        }
+        Debug.Log($"Spawn en: {posicioSpawn}");
     }
     private void GetTileAtCurrentPointerPosition(out Vector3 worldPosition, out Vector3Int cellPosition)
     {
-        Vector2 mouseViewportCoordinates = _inputactions.UI.Point.ReadValue<Vector2>();
-        Vector3 worldPoint = Camera.main.ScreenToWorldPoint(mouseViewportCoordinates);
+        Vector2 mousePosition = _inputactions.UI.Point.ReadValue<Vector2>();
+        Vector3 worldPoint = Camera.main.ScreenToWorldPoint(mousePosition);
         cellPosition = _tilemap.WorldToCell(worldPoint);
         worldPosition = _tilemap.GetCellCenterWorld(cellPosition);
     }
