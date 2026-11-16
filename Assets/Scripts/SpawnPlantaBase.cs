@@ -22,12 +22,12 @@ public class SpawnPlantaBase : MonoBehaviour
     void OnEnable()
     {
         _inputactions.UI.Enable();
-        _inputactions.UI.RightClick.performed += OnCrearPlanta;
+        _inputactions.UI.Click.performed += OnCrearPlanta;
     }
 
     void OnDisable()
     {
-        _inputactions.UI.RightClick.performed -= OnCrearPlanta;
+        _inputactions.UI.Click.performed -= OnCrearPlanta;
         _inputactions.UI.Disable();
     }
 
