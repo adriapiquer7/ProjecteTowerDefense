@@ -13,7 +13,7 @@ public class SpawnPlantaBase : MonoBehaviour
     [Header("Funcionalitat")]
     [SerializeField] private GameObject _prefabPlanta;
     [SerializeField] private SOPlantaBase[] _plantas;
-    int[,] jardin = new int[4, 17];
+    int[,] jardin = new int[5, 18];
     private void Awake()
     {
         _inputactions = new InputSystem_Actions();
@@ -38,10 +38,14 @@ public class SpawnPlantaBase : MonoBehaviour
         posicioSpawn.z = -1;
         if(cellPosition.y>=-4 && cellPosition.y <= 0)
         {
-            GameObject planta = Instantiate(_prefabPlanta);
-            planta.GetComponent<PlantaBaseBehaviour>().Iniciar(posicioSpawn, _plantas[Random.Range(0, _plantas.Length)]);
+            if(jardin[cellPosition.y*-1, cellPosition.x] == 0)
+            {
+                GameObject planta = Instantiate(_prefabPlanta);
+                planta.GetComponent<PlantaBaseBehaviour>().Iniciar(posicioSpawn, _plantas[Random.Range(0, _plantas.Length)]);
+                jardin[cellPosition.y*-1,cellPosition.x]=1;
+            }
         }
-        Debug.Log($"Spawn en: {cellPosition}");
+        //Debug.Log($"Spawn en: {cellPosition}");
     }
     private void GetTileAtCurrentPointerPosition(out Vector3 worldPosition, out Vector3Int cellPosition)
     {
