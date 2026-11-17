@@ -33,6 +33,8 @@ public class SpawnPlantaBase : MonoBehaviour
 
     private void OnCrearPlanta(InputAction.CallbackContext context)
     {
+        if(context.action.ReadValue<float>()!=1.0f)
+        return;
         GetTileAtCurrentPointerPosition(out Vector3 worldPosition, out Vector3Int cellPosition);
         Vector3 posicioSpawn = worldPosition;
         posicioSpawn.z = -1;
@@ -45,7 +47,6 @@ public class SpawnPlantaBase : MonoBehaviour
                 jardin[cellPosition.y*-1,cellPosition.x]=1;
             }
         }
-        //Debug.Log($"Spawn en: {cellPosition}");
     }
     private void GetTileAtCurrentPointerPosition(out Vector3 worldPosition, out Vector3Int cellPosition)
     {

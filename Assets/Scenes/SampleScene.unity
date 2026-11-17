@@ -494,6 +494,7 @@ MonoBehaviour:
   _prefabPlanta: {fileID: 2771476694915633708, guid: 2ac2bfdf95b1d044c8fb7a11470a6349, type: 3}
   _plantas:
   - {fileID: 11400000, guid: b4b69b6a2df879a45b4ac83edb4399cd, type: 2}
+  - {fileID: 11400000, guid: 74a72b0dd4c436e4d855b79aa48e8bf3, type: 2}
 --- !u!1 &900396448
 GameObject:
   m_ObjectHideFlags: 0
