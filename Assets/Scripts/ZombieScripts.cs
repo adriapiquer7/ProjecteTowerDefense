@@ -1,3 +1,5 @@
+using System;
+using UnityEditor.Rendering.LookDev;
 using UnityEngine;
 
 public class ZombieBase : MonoBehaviour
@@ -5,31 +7,37 @@ public class ZombieBase : MonoBehaviour
 
     private Rigidbody2D _rigidbody2D;
 
-    private Collider2D _collider2D;
+    private int _hp = 10;
 
-    private Time _time = 0;
+    private float _time;
 
-    /*
-    private void Update()
+    [SerializeField]
+    private float _speed = -0.8f;
+
+    public void Awake()
     {
-        if (_time > 10)
-        {
-
-            _time = 0f;
+        _rigidbody2D = GetComponent<Rigidbody2D>();
+        _rigidbody2D.linearVelocityX = _speed;
 
 
-        } else
-        {
-
-            _time += Time.deltaTime;
-
-        }
-    }
-    */
-
-    private void Update()
-    {
-    
     }
 
+    void OnCollisionEnter2D(Collision2D collision)
+    {
+        
+        _speed = 0;        
+        _rigidbody2D.linearVelocityX = _speed;
+    }
+
+    void OnCollisionExit2D(Collision2D collision)
+    {
+        _speed = -0.8f;        
+        _rigidbody2D.linearVelocityX = _speed;
+    }
+
+    public void hit(int _hpRebut) {
+
+        
+
+    }
 }
