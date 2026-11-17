@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 6245575083270447183}
   - component: {fileID: 1506202392557194881}
   - component: {fileID: 7544412828215572510}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: ZombieBase
   m_TagString: Untagged
   m_Icon: {fileID: 0}
