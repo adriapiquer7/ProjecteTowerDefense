@@ -44,9 +44,5 @@ public class ZombieBase : MonoBehaviour
         }
     }
 
-    public void hit(int _hpRebut) {
 
-        
-
-    }
 }

@@ -170,4 +170,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2f440906b4812734db1056e63a58402b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::ZombieBase
-  _speed: -0.8
+  _speed: 0

@@ -630,6 +630,7 @@ MonoBehaviour:
   _plantas:
   - {fileID: 11400000, guid: b4b69b6a2df879a45b4ac83edb4399cd, type: 2}
   - {fileID: 11400000, guid: 74a72b0dd4c436e4d855b79aa48e8bf3, type: 2}
+  - {fileID: 11400000, guid: 6da81731aae5932449f46d0e931320d3, type: 2}
 --- !u!1 &900396448
 GameObject:
   m_ObjectHideFlags: 0
