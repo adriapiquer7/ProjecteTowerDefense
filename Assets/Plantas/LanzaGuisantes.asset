@@ -14,8 +14,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::SOPlantaBase
   _nom: LanzaGuisantes
   _vida: 75
-  _velocitat: 8
+  _velocitat: 2
   _dany: 15
   _sprite: {fileID: 10913, guid: 0000000000000000f000000000000000, type: 0}
-  "_for\xE7aDispar": 2
+  "_for\xE7aDispar": 8
   _proyectil: {fileID: 5852880022349637456, guid: 0a576c113ab352b45a51cccf8af11ea1, type: 3}
