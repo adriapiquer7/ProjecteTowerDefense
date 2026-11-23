@@ -2,15 +2,16 @@ using UnityEngine;
 
 public class ZombieBaseBehavior : MonoBehaviour
 {
-    [SerializeField]
     private string _nom;
-    [SerializeField]
-    private float _dany;
-    [SerializeField]
+
+    private float _vida;
+
     private float _velocitat;
-    [SerializeField]
+
+    private float _dany;
+
     private Sprite _sprite;
-    [SerializeField]
+
     private Animator _animator;
 
     private SpriteRenderer _spriteRenderer;
@@ -20,9 +21,10 @@ public class ZombieBaseBehavior : MonoBehaviour
         _spriteRenderer = GetComponent<SpriteRenderer>();
     }
 
-    public void Iniciar(SOPlantaBase info)
+    public void Iniciar(SOZombiesItems info)
     {
         _nom=info.Nom;
+        _vida=info.Vida;
         _dany=info.Dany;
         _velocitat=info.Velocitat;
         _sprite=info.Imatge;
