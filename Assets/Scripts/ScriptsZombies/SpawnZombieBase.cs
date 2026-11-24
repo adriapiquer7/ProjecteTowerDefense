@@ -39,7 +39,7 @@ public class SpawnZombieBase : MonoBehaviour
                 int op = Random.Range(0,_zombies.Length);
                 Quaternion rotar = new Quaternion(0, 0, 0, 0);
                 GameObject zombie = Instantiate(_prefabZombie, posZombie, rotar);
-                zombie.GetComponent<ZombieBaseBehavior>().Iniciar(_zombies[op]);
+                zombie.GetComponent<ZombieScripts>().Iniciar(_zombies[op]);
 
         }
         

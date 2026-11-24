@@ -262,11 +262,32 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 0}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 3093107964784723749, guid: 477dcfae94a13774bbf2fbd90297679f, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 180664605}
   m_SourcePrefab: {fileID: 100100000, guid: 477dcfae94a13774bbf2fbd90297679f, type: 3}
+--- !u!1 &180664604 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 3093107964784723749, guid: 477dcfae94a13774bbf2fbd90297679f, type: 3}
+  m_PrefabInstance: {fileID: 180664603}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &180664605
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 180664604}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2f440906b4812734db1056e63a58402b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::ZombieScripts
 --- !u!1 &519420028
 GameObject:
   m_ObjectHideFlags: 0
@@ -577,6 +598,7 @@ GameObject:
   - component: {fileID: 651937052}
   - component: {fileID: 651937051}
   - component: {fileID: 651937053}
+  - component: {fileID: 651937054}
   m_Layer: 0
   m_Name: LevelManager
   m_TagString: Untagged
@@ -631,6 +653,26 @@ MonoBehaviour:
   - {fileID: 11400000, guid: b4b69b6a2df879a45b4ac83edb4399cd, type: 2}
   - {fileID: 11400000, guid: 74a72b0dd4c436e4d855b79aa48e8bf3, type: 2}
   - {fileID: 11400000, guid: 6da81731aae5932449f46d0e931320d3, type: 2}
+--- !u!114 &651937054
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 651937050}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2afd99b9055526644b46fcdc4d2ade30, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: '::'
+  _tilemap: {fileID: 1980175849}
+  _prefabZombie: {fileID: 3093107964784723749, guid: 477dcfae94a13774bbf2fbd90297679f, type: 3}
+  _zombies:
+  - {fileID: 11400000, guid: afb3fe960d926ec4d90b50f132fd9e9d, type: 2}
+  - {fileID: 11400000, guid: c95af8a6459d37e45b39af527335c030, type: 2}
+  - {fileID: 11400000, guid: 685f304facf828344b0b96674802b885, type: 2}
+  - {fileID: 11400000, guid: f5ed856b97cbc42479fe8f2e7176841c, type: 2}
+  _zombieMax: 20
 --- !u!1 &900396448
 GameObject:
   m_ObjectHideFlags: 0
