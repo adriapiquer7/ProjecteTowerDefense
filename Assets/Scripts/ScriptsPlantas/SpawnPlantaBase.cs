@@ -91,5 +91,7 @@ public class SpawnPlantaBase : MonoBehaviour
         Vector3 worldPoint = Camera.main.ScreenToWorldPoint(mousePosition);
         cellPosition = _tilemap.WorldToCell(worldPoint);
         worldPosition = _tilemap.GetCellCenterWorld(cellPosition);
+        Debug.Log(cellPosition.y);
+        Debug.Log(cellPosition.x);
     }
 }

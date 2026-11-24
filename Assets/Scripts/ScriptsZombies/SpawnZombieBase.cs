@@ -1,3 +1,4 @@
+using System.Collections;
 using UnityEngine;
 using UnityEngine.Tilemaps;
 
@@ -17,45 +18,56 @@ public class SpawnZombieBase : MonoBehaviour
 
     private float _tempsEntreZombies = 20f;
 
+    private Vector3Int posicio;
+
+
     private void CrearZombies()
     {
-        if(_zombieMax > _contZombie)
+    
+
+        _contZombie++;
+
+
+
+        if(_zombies == null || _zombies.Length == 0)
         {
-
-            _contZombie++;
-
-            int posY = Random.Range(-2, 3);
-
-            Vector3 posZombie = new Vector3(-2, posY, 0);
-            
-
-
-            if(_zombies == null || _zombies.Length == 0)
-            {
-                Debug.LogWarning("No hay ScriptableObjects asignados en _zombies.");
-                return;
-            }
-
-                int op = Random.Range(0,_zombies.Length);
-                Quaternion rotar = new Quaternion(0, 0, 0, 0);
-                GameObject zombie = Instantiate(_prefabZombie, posZombie, rotar);
-                zombie.GetComponent<ZombieScripts>().Iniciar(_zombies[op]);
-
+            Debug.LogWarning("No hay ScriptableObjects asignados en _zombies.");
+            return;
         }
-        
 
+        Vector3 transform = new Vector3(16, 0, 1);
+
+        posicio = GetCellFromObject(transform);
+
+        int op = Random.Range(0,_zombies.Length);
+        GameObject zombie = Instantiate(_prefabZombie);
+        zombie.GetComponent<ZombieScripts>().Iniciar(posicio ,_zombies[op]);
+
+    
         
     }
 
-    void Update()
+    public Vector3Int GetCellFromObject(Vector3 target)
     {
-        _time += Time.deltaTime;
+        Vector3 worldPosition = target;
+        return _tilemap.WorldToCell(worldPosition);
+    }
 
-        if(_time >= _tempsEntreZombies)
+    private IEnumerator GenerarZombiesRutina()
+    {
+        while (_zombieMax > _contZombie)
         {
             CrearZombies();
-            _time -= _tempsEntreZombies;
+
+            yield return new WaitForSeconds(_tempsEntreZombies);
         }
+    }
+
+    void Start()
+    {
+        
+        StartCoroutine(GenerarZombiesRutina());
 
     }
+
 }

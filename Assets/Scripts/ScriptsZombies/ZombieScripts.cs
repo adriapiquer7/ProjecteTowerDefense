@@ -1,5 +1,4 @@
 using System;
-using UnityEditor.Rendering.LookDev;
 using UnityEngine;
 
 public class ZombieScripts : MonoBehaviour
@@ -11,6 +10,7 @@ public class ZombieScripts : MonoBehaviour
 
     private float _vida;
 
+    [SerializeField]
     private float _velocitat;
 
     private float _dany;
@@ -26,16 +26,17 @@ public class ZombieScripts : MonoBehaviour
         _rigidbody2D = GetComponent<Rigidbody2D>();
     }
 
-    public void Iniciar(SOZombiesItems info)
+    public void Iniciar(Vector3 posicio, SOZombiesItems info)
     {
+        transform.position=posicio;
         _nom=info.Nom;
         _vida=info.Vida;
         _dany=info.Dany;
         _velocitat=info.Velocitat;
         _sprite=info.Imatge;
         _animator=info.Animacio;
-        _spriteRenderer.sprite = _sprite;
-        _rigidbody2D.linearVelocityX = _velocitat;
+        //_spriteRenderer.sprite = _sprite;
+        _rigidbody2D.linearVelocityX = -_velocitat;
     }
 
     void OnCollisionEnter2D(Collision2D collision)
@@ -43,7 +44,7 @@ public class ZombieScripts : MonoBehaviour
         if (collision.gameObject.layer == LayerMask.NameToLayer("Pajaros"))
         {
             Console.WriteLine("Es un pajaro");
-            _rigidbody2D.linearVelocityX = _velocitat;
+            _rigidbody2D.linearVelocityX = -_velocitat;
         }
     }
 
@@ -52,7 +53,7 @@ public class ZombieScripts : MonoBehaviour
         if (collision.gameObject.layer == LayerMask.NameToLayer("Pajaros"))
         {
             Console.WriteLine("Ya no es un pajaro");
-            _rigidbody2D.linearVelocityX = _velocitat;   
+            _rigidbody2D.linearVelocityX = -_velocitat;   
         }
     }
 
