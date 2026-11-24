@@ -27,7 +27,10 @@ public class SpawnPlantaBase : MonoBehaviour
     {
         _inputactions = new InputSystem_Actions();
         _tilemapManager = GetComponent<TileMapManager>();
+
+        PlantaBaseBehaviour.OnDead += PlantaDestroyed;
     }
+
     void Start()
     {
         OnDisplayPlantas?.Invoke(_plantas);
@@ -41,6 +44,7 @@ public class SpawnPlantaBase : MonoBehaviour
     void OnDisable()
     {
         _inputactions.UI.Disable();
+        PlantaBaseBehaviour.OnDead -= PlantaDestroyed;
     }
 
     void Update()
@@ -85,6 +89,15 @@ public class SpawnPlantaBase : MonoBehaviour
             }
         }
     }
+
+    private void PlantaDestroyed(Vector3 position)
+    {
+        Vector3Int cellPosition = _tilemap.WorldToCell(position);
+        Debug.Assert(jardin[cellPosition.y*-1,cellPosition.x] == 1, $"PlantaDestroyed coordinates error at [{cellPosition.y},{cellPosition.x}]");
+        jardin[cellPosition.y*-1,cellPosition.x]=0;
+    }
+
+
     private void GetTileAtCurrentPointerPosition(out Vector3 worldPosition, out Vector3Int cellPosition)
     {
         Vector2 mousePosition = _inputactions.UI.Point.ReadValue<Vector2>();

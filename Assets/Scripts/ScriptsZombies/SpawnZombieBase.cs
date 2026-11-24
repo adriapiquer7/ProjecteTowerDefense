@@ -24,10 +24,7 @@ public class SpawnZombieBase : MonoBehaviour
     private void CrearZombies()
     {
     
-
         _contZombie++;
-
-
 
         if(_zombies == null || _zombies.Length == 0)
         {
@@ -35,16 +32,17 @@ public class SpawnZombieBase : MonoBehaviour
             return;
         }
 
-        Vector3 transform = new Vector3(16, 0, 1);
+        Vector3 transform = new Vector3(18, Random.Range(1, -4), 0);
 
         posicio = GetCellFromObject(transform);
 
         int op = Random.Range(0,_zombies.Length);
         GameObject zombie = Instantiate(_prefabZombie);
         zombie.GetComponent<ZombieScripts>().Iniciar(posicio ,_zombies[op]);
-
-    
-        
+        if (_tempsEntreZombies >= 4)
+        {
+            _tempsEntreZombies-=1f;
+        }
     }
 
     public Vector3Int GetCellFromObject(Vector3 target)
@@ -65,9 +63,7 @@ public class SpawnZombieBase : MonoBehaviour
 
     void Start()
     {
-        
         StartCoroutine(GenerarZombiesRutina());
-
     }
 
 }
