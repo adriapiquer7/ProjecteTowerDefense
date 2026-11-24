@@ -9,7 +9,6 @@ public class SpawnPlantaBase : MonoBehaviour
     private Tilemap _tilemap;
     
     [Header("Input")]
-    //[SerializeField] private InputActionReference _inputCrearRef;
     private InputSystem_Actions _inputactions;
     [Header("Funcionalitat")]
     [SerializeField] private GameObject _prefabPlanta;
@@ -72,7 +71,7 @@ public class SpawnPlantaBase : MonoBehaviour
         return;
         GetTileAtCurrentPointerPosition(out Vector3 worldPosition, out Vector3Int cellPosition);
         Vector3 posicioSpawn = worldPosition;
-        posicioSpawn.z = -1;
+        posicioSpawn.z = -2;
         if(cellPosition.y>=-4 && cellPosition.y <= 0)
         {
             if(jardin[cellPosition.y*-1, cellPosition.x] == 0)

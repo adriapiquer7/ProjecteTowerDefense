@@ -31,10 +31,10 @@ public class PlantaBaseBehaviour : MonoBehaviour
         transform.position=posicio;
         _nom=info.Nom;
         _dany=info.Dany;
-        _velocitat=info.Velocitat;
+        _velocitat=info.Velocitat; //cada quant dispara
         _sprite=info.Imatge;
         _spriteRenderer.sprite = _sprite;
-        _forçaDispar=info.forçaDispar;
+        _forçaDispar=info.forçaDispar; //velocitat a la que surt la bola
         _prefabBala=info.Bala;
     }
 
@@ -42,11 +42,6 @@ public class PlantaBaseBehaviour : MonoBehaviour
     {
         _zombies.Add(collision.transform);
     }
-
-    /*void OnTriggerExit2D(Collider2D collision)
-    {
-        _zombies.Remove(collision.transform);
-    }*/
 
     void Update()
     {
