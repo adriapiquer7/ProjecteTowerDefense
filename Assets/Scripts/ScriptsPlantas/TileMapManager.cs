@@ -13,9 +13,25 @@ public class TileMapManager : MonoBehaviour
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Awake()
     {
+        //TODO només un per escena
         _inputactions = new InputSystem_Actions();
 
         _inputactions.UI.Enable();
+
+        StopBuilding();
+    }
+
+    public void StartBuilding(SOPlantaBase planta)
+    {
+        _editGameObject.GetComponent<SpriteRenderer>().sprite = planta.Imatge;
+        _editGameObject.SetActive(true);
+        enabled = true;
+    }
+
+    public void StopBuilding()
+    {
+        enabled = false;
+        _editGameObject.SetActive(false);
     }
 
     void Update()

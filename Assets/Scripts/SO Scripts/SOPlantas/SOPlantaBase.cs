@@ -19,7 +19,9 @@ public class SOPlantaBase : ScriptableObject
     private Sprite _sprite;
     public Sprite Imatge =>_sprite;
     [SerializeField]
-    private Animator _animator;
-    public Animator Animacio=>_animator;
-
+    private float _forçaDispar;
+    public float forçaDispar=>_forçaDispar;
+    [SerializeField]
+    private GameObject _proyectil;
+    public GameObject Bala => _proyectil;
 }

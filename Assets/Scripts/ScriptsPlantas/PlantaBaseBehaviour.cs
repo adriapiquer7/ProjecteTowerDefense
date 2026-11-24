@@ -1,3 +1,4 @@
+using Unity.Mathematics;
 using UnityEngine;
 
 public class PlantaBaseBehaviour : MonoBehaviour
@@ -11,11 +12,16 @@ public class PlantaBaseBehaviour : MonoBehaviour
     [SerializeField]
     private Sprite _sprite;
     [SerializeField]
-    private Animator _animator;
+    private float _forçaDispar;
+    [SerializeField]
+    private GameObject _prefabBala;
 
+    private System.Collections.Generic.List<Transform> _zombies = new();
+    
     private SpriteRenderer _spriteRenderer;
+    private float _tempsTranscurrit;
 
-        private void Awake()
+    private void Awake()
     {
         _spriteRenderer = GetComponent<SpriteRenderer>();
     }
@@ -27,8 +33,30 @@ public class PlantaBaseBehaviour : MonoBehaviour
         _dany=info.Dany;
         _velocitat=info.Velocitat;
         _sprite=info.Imatge;
-        _animator=info.Animacio;
         _spriteRenderer.sprite = _sprite;
+        _forçaDispar=info.forçaDispar;
+        _prefabBala=info.Bala;
     }
-    
+
+    void OnTriggerEnter2D(Collider2D collision)
+    {
+        _zombies.Add(collision.transform);
+    }
+
+    /*void OnTriggerExit2D(Collider2D collision)
+    {
+        _zombies.Remove(collision.transform);
+    }*/
+
+    void Update()
+    {
+        _tempsTranscurrit+=Time.deltaTime;
+        if (_tempsTranscurrit >= _velocitat && _zombies.Count > 0)
+        {
+            _tempsTranscurrit=0;
+            GameObject balaInstanciada = Instantiate(_prefabBala, transform.position, quaternion.identity);
+            balaInstanciada.GetComponent<Rigidbody2D>().linearVelocityX=_forçaDispar;
+        }
+    }
+
 }

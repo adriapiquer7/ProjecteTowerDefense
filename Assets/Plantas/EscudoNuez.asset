@@ -17,3 +17,5 @@ MonoBehaviour:
   _velocitat: 0
   _dany: 0
   _sprite: {fileID: 0}
+  "_for\xE7aDispar": 0
+  _proyectil: {fileID: 5852880022349637456, guid: 0a576c113ab352b45a51cccf8af11ea1, type: 3}
