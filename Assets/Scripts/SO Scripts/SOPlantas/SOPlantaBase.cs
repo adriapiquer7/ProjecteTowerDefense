@@ -16,6 +16,9 @@ public class SOPlantaBase : ScriptableObject
     private float _dany;
     public float Dany => _dany;
     [SerializeField]
+    private int _cost;
+    public int Cost => _cost;
+    [SerializeField]
     private Sprite _sprite;
     public Sprite Imatge =>_sprite;
     [SerializeField]

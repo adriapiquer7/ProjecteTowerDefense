@@ -11,7 +11,6 @@ public class TileMapManager : MonoBehaviour
     private GameObject _editGameObject;
 
     private InputSystem_Actions _inputactions;
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Awake()
     {
         //TODO només un per escena

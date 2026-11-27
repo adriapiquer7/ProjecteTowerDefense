@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Zombie Michael
   m_EditorClassIdentifier: Assembly-CSharp::SOZombiesItems
   _nom: Zombie Michael Jackson
-  _vida: 30
+  _vida: 100
   _velocitat: 0.65
   _dany: 15
   _sprite: {fileID: 0}

@@ -1,20 +1,21 @@
+using System;
 using UnityEngine;
 
-[CreateAssetMenu(fileName = "SOint", menuName = "Scriptable Objects/SOint")]
+[CreateAssetMenu(fileName = "SOInt", menuName = "Scriptable Objects/SOInt")]
 public class SOInt : ScriptableObject
 {
     [SerializeField]
-        private int _value;
+    private int _value;
 
-        public event System.Action<int> OnValueChanged;
+    public event System.Action<int> OnValueChanged;
 
-        public int Value
+    public int Value
+    {
+        get => _value;
+        set
         {
-            get => _value;
-            set
-            {
-                _value = value;
-                OnValueChanged?.Invoke(_value);
-            }
+            _value = value;
+            OnValueChanged?.Invoke(_value);
         }
+    }
 }
