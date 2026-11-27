@@ -8,7 +8,7 @@ public class ZombieScripts : MonoBehaviour
 
     private string _nom;
 
-    private float _vida;
+    public float _vida;
 
     [SerializeField]
     private float _velocitat;
@@ -57,6 +57,9 @@ public class ZombieScripts : MonoBehaviour
         }
     }
 
+
+    public event System.Action OnZombieHaMort;
+
     public void HacerDano(int dany)
     {
         
@@ -65,10 +68,12 @@ public class ZombieScripts : MonoBehaviour
         if(_vida <= 0)
         {
             
-            GameObject.Destroy(gameObject);
-
+            OnZombieHaMort?.Invoke();
+            Destroy(gameObject);
         }
 
     }
+
+
 
 }
