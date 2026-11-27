@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Zombie Salto
   m_EditorClassIdentifier: Assembly-CSharp::SOZombiesItems
   _nom: Zombie Vertiga
-  _vida: 70
+  _vida: 140
   _velocitat: 0.9
   _dany: 15
   _sprite: {fileID: 0}

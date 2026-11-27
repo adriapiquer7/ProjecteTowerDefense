@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Zombie Base
   m_EditorClassIdentifier: Assembly-CSharp::SOZombiesItems
   _nom: Zombie
-  _vida: 70
+  _vida: 140
   _velocitat: 0.8
   _dany: 20
   _sprite: {fileID: 0}

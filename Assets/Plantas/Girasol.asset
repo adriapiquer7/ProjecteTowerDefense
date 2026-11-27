@@ -16,6 +16,7 @@ MonoBehaviour:
   _vida: 50
   _velocitat: 10
   _dany: 0
+  _cost: 25
   _sprite: {fileID: 4829489451213051563, guid: 901e6b37ea3b66844b3348e7bc0fccfa, type: 3}
   "_for\xE7aDispar": 0
   _proyectil: {fileID: 5852880022349637456, guid: 0a576c113ab352b45a51cccf8af11ea1, type: 3}

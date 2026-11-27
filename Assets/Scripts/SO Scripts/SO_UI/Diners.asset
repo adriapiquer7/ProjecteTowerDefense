@@ -12,4 +12,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4049aa85884ce1e40b332e54bd30a0c4, type: 3}
   m_Name: Diners
   m_EditorClassIdentifier: Assembly-CSharp::SOInt
-  _value: 0
+  _value: 98650

@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Zombie Atleta
   m_EditorClassIdentifier: Assembly-CSharp::SOZombiesItems
   _nom: Zombie Atleta
-  _vida: 120
+  _vida: 240
   _velocitat: 1
   _dany: 25
   _sprite: {fileID: 0}
