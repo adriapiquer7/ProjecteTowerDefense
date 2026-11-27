@@ -1,4 +1,5 @@
 using System;
+using TMPro;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.Tilemaps;
@@ -13,11 +14,15 @@ public class SpawnPlantaBase : MonoBehaviour
     [Header("Funcionalitat")]
     [SerializeField] private GameObject _prefabPlanta;
     [SerializeField] private SOPlantaBase[] _plantas;
+    [SerializeField]
+    private TextMeshProUGUI _moneyText;
 
     private SOPlantaBase _plantToBuild;
 
     private bool _building = false;
-
+    [SerializeField]
+    private SOInt _money;
+    public event Action<int> OnDisplayMoney;    
     public event Action<SOPlantaBase[]> OnDisplayPlantas;
     int[,] jardin = new int[5, 18];
     
@@ -29,16 +34,19 @@ public class SpawnPlantaBase : MonoBehaviour
     }
     void Start()
     {
+        DisplayMoney(_money.Value);
         OnDisplayPlantas?.Invoke(_plantas);
     }
 
     void OnEnable()
     {
+        _money.OnValueChanged += OnDisplayMoney;
         _inputactions.UI.Enable();
     }
 
     void OnDisable()
     {
+        _money.OnValueChanged -= OnDisplayMoney;
         _inputactions.UI.Disable();
     }
 
@@ -50,6 +58,9 @@ public class SpawnPlantaBase : MonoBehaviour
 
     public void OnBuild(SOPlantaBase planta)
     {
+        if(_money.Value<=planta.Cost)
+            return;
+        
         _building = true;
         _plantToBuild = planta;
         _tilemapManager.StartBuilding(planta);
@@ -76,6 +87,11 @@ public class SpawnPlantaBase : MonoBehaviour
         {
             if(jardin[cellPosition.y*-1, cellPosition.x] == 0)
             {
+                if (!TryPurchase(_plantToBuild))
+                {
+                    OnCancelBuilding(default);
+                    return;
+                }
                 GameObject planta = Instantiate(_prefabPlanta);
                 planta.GetComponent<PlantaBaseBehaviour>().Iniciar(posicioSpawn, _plantToBuild);
                 jardin[cellPosition.y*-1,cellPosition.x]=1;
@@ -90,5 +106,20 @@ public class SpawnPlantaBase : MonoBehaviour
         Vector3 worldPoint = Camera.main.ScreenToWorldPoint(mousePosition);
         cellPosition = _tilemap.WorldToCell(worldPoint);
         worldPosition = _tilemap.GetCellCenterWorld(cellPosition);
+    }
+
+    public bool TryPurchase(SOPlantaBase item)
+    {
+        if (item.Cost <= _money.Value)
+        {
+            _money.Value -= item.Cost;
+            return true;
+        }
+
+        return false;
+    }
+    private void DisplayMoney(int money)
+    {
+        _moneyText.text = money.ToString();
     }
 }

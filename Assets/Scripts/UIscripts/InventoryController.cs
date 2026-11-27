@@ -9,8 +9,8 @@ public class InventoryController : MonoBehaviour
         public event Action<int> OnDisplayMoney;
 
         [SerializeField]
-        private List<SOItem> _items;
-        public event Action<SOItem[]> OnDisplayItems;
+        private List<SOPlantaBase> _items;
+        public event Action<SOPlantaBase[]> OnDisplayItems;
 
         [SerializeField]
         private InventoryController _purchaserController;
@@ -20,7 +20,6 @@ public class InventoryController : MonoBehaviour
             _money.OnValueChanged += OnDisplayMoney;
 
             OnDisplayMoney.Invoke(_money.Value);
-            OnDisplayItems?.Invoke(_items.ToArray());
         }
 
         private void OnDestroy()
@@ -29,30 +28,14 @@ public class InventoryController : MonoBehaviour
         }
 
 
-        public bool TryPurchase(SOItem item)
+        public bool TryPurchase(SOPlantaBase item)
         {
-            if (item.Price <= _money.Value)
+            if (item.Cost <= _money.Value)
             {
-                _money.Value -= item.Price;
-                _items.Add(item);
-                OnDisplayItems?.Invoke(_items.ToArray());
+                _money.Value -= item.Cost;
                 return true;
             }
 
-            return false;
-        }
-
-        public bool TrySell(SOItem item)
-        {
-            Debug.Assert(_items.Contains(item), $"{this.name}: L'objecte {item.Name} no és a l'inventari");
-
-            if (_purchaserController.TryPurchase(item))
-            {
-                _money.Value += item.Price;
-                _items.Remove(item);
-                OnDisplayItems?.Invoke(_items.ToArray());
-                return true;
-            }
             return false;
         }
     }
