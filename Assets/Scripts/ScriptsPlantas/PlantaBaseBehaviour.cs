@@ -46,10 +46,10 @@ public class PlantaBaseBehaviour : MonoBehaviour
         _zombies.Add(collision.transform);
     }
 
-    /*void OnTriggerExit2D(Collider2D collision)
+    void OnTriggerExit2D(Collider2D collision)
     {
         _zombies.Remove(collision.transform);
-    }*/
+    }
 
     void Update()
     {

@@ -1,4 +1,5 @@
 using System.Collections;
+using TMPro;
 using UnityEngine;
 using UnityEngine.Tilemaps;
 
@@ -10,15 +11,25 @@ public class SpawnZombieBase : MonoBehaviour
     [SerializeField] private GameObject _prefabZombie;
     [SerializeField] private SOZombiesItems[] _zombies;
 
+    [SerializeField] private ZombieScripts[] _zombiRonda;
+
     [SerializeField] private int _zombieMax = 20;
 
     private int _contZombie = 0;
+
+    private int _totalZombie = 30;
 
     private float _time = 0;
 
     private float _tempsEntreZombies = 20f;
 
     private Vector3Int posicio;
+
+    [SerializeField]
+    private TextMeshProUGUI _hasGuanyat;
+
+    [SerializeField]
+    private TextMeshProUGUI _textEnemigos;
 
 
     private void CrearZombies()
@@ -64,6 +75,24 @@ public class SpawnZombieBase : MonoBehaviour
     void Start()
     {
         StartCoroutine(GenerarZombiesRutina());
+    }
+
+    public void EnemicKO()
+    {
+        
+     _contZombie--;
+     _totalZombie--;
+
+    _textEnemigos.text = "Enemigos eliminados:"+ _totalZombie--;
+
+    if(_totalZombie == 0)
+        {
+            
+            _hasGuanyat.enabled = true;
+
+        }
+
+
     }
 
 }

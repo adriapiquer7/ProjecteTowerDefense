@@ -29,7 +29,7 @@ Transform:
   m_GameObject: {fileID: 3093107964784723749}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.476, y: -0.134, z: 0}
+  m_LocalPosition: {x: 0.476, y: 0, z: 0}
   m_LocalScale: {x: 0.7643, y: 0.7643, z: 0.7643}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -128,7 +128,7 @@ CapsuleCollider2D:
   m_UsedByEffector: 0
   m_CompositeOperation: 0
   m_CompositeOrder: 0
-  m_Offset: {x: 0, y: -0.47}
+  m_Offset: {x: 0, y: -0.63}
   m_Size: {x: 1.08, y: 0.34}
   m_Direction: 0
 --- !u!50 &1506202392557194881
@@ -170,3 +170,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2f440906b4812734db1056e63a58402b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::ZombieScripts
+  _velocitat: 0
