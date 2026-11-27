@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::SOPlantaBase
   _nom: Nuez
   _vida: 125
-  _velocitat: 3.4028235e+38
+  _velocitat: 0
   _dany: 0
   _sprite: {fileID: 1373551369, guid: 1943e03be8501254b8189973eaf6c7aa, type: 3}
   "_for\xE7aDispar": 0

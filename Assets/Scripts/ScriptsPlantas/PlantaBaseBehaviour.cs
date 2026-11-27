@@ -1,3 +1,4 @@
+using System;
 using Unity.Mathematics;
 using UnityEngine;
 
@@ -21,6 +22,8 @@ public class PlantaBaseBehaviour : MonoBehaviour
     private SpriteRenderer _spriteRenderer;
     private float _tempsTranscurrit;
 
+    public static event Action<Vector3> OnDead;
+
     private void Awake()
     {
         _spriteRenderer = GetComponent<SpriteRenderer>();
@@ -41,6 +44,11 @@ public class PlantaBaseBehaviour : MonoBehaviour
     void OnTriggerEnter2D(Collider2D collision)
     {
         _zombies.Add(collision.transform);
+    }
+
+    void OnTriggerExit2D(Collider2D collision)
+    {
+        _zombies.Remove(collision.transform);
     }
 
     void Update()

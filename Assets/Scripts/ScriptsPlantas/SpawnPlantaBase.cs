@@ -31,7 +31,10 @@ public class SpawnPlantaBase : MonoBehaviour
     {
         _inputactions = new InputSystem_Actions();
         _tilemapManager = GetComponent<TileMapManager>();
+
+        PlantaBaseBehaviour.OnDead += PlantaDestroyed;
     }
+
     void Start()
     {
         DisplayMoney(_money.Value);
@@ -48,6 +51,7 @@ public class SpawnPlantaBase : MonoBehaviour
     {
         _money.OnValueChanged -= OnDisplayMoney;
         _inputactions.UI.Disable();
+        PlantaBaseBehaviour.OnDead -= PlantaDestroyed;
     }
 
     void Update()
@@ -100,12 +104,23 @@ public class SpawnPlantaBase : MonoBehaviour
             }
         }
     }
+
+    private void PlantaDestroyed(Vector3 position)
+    {
+        Vector3Int cellPosition = _tilemap.WorldToCell(position);
+        Debug.Assert(jardin[cellPosition.y*-1,cellPosition.x] == 1, $"PlantaDestroyed coordinates error at [{cellPosition.y},{cellPosition.x}]");
+        jardin[cellPosition.y*-1,cellPosition.x]=0;
+    }
+
+
     private void GetTileAtCurrentPointerPosition(out Vector3 worldPosition, out Vector3Int cellPosition)
     {
         Vector2 mousePosition = _inputactions.UI.Point.ReadValue<Vector2>();
         Vector3 worldPoint = Camera.main.ScreenToWorldPoint(mousePosition);
         cellPosition = _tilemap.WorldToCell(worldPoint);
         worldPosition = _tilemap.GetCellCenterWorld(cellPosition);
+        Debug.Log(cellPosition.y);
+        Debug.Log(cellPosition.x);
     }
 
     public bool TryPurchase(SOPlantaBase item)
