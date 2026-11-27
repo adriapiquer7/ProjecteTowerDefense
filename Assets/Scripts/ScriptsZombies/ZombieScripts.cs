@@ -19,7 +19,7 @@ public class ZombieScripts : MonoBehaviour
 
     private Animator _animator;
 
-    private SpriteRenderer _spriteRenderer;    
+    private SpriteRenderer _spriteRenderer;  
 
     public void Awake()
     {
@@ -57,5 +57,18 @@ public class ZombieScripts : MonoBehaviour
         }
     }
 
+    public void HacerDano(int dany)
+    {
+        
+        _vida -= dany;
+
+        if(_vida <= 0)
+        {
+            
+            GameObject.Destroy(gameObject);
+
+        }
+
+    }
 
 }
