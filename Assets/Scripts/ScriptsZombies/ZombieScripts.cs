@@ -19,7 +19,7 @@ public class ZombieScripts : MonoBehaviour
 
     private Animator _animator;
 
-    private SpriteRenderer _spriteRenderer;  
+    private SpriteRenderer _spriteRenderer; 
 
     public void Awake()
     {
