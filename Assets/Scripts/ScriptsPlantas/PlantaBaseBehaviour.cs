@@ -54,6 +54,8 @@ public class PlantaBaseBehaviour : MonoBehaviour
     void Update()
     {
         _tempsTranscurrit+=Time.deltaTime;
+        if(_prefabBala == null)
+            return;
         if (_tempsTranscurrit >= _velocitat && _zombies.Count > 0)
         {
             _tempsTranscurrit=0;
